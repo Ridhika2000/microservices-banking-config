@@ -1,3 +1,35 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-68722230.okta.com/oauth2/default
+      client:
+        registration:
+          my-internal-client:
+            provider: okta
+            authorization-grant-type: client_credentials
+            scope: internal
+            client-id: 0oaf1gpbyuRlvRjUn5d7
+            client-secret: SC02Io5ZZl5YmzhodaZA2JeYGzIQT2yLQNmqhqQj-QGuGcwcuBRx2o8gKjAvtIBb
+ 
+        provider:
+          okta:
+            issuer-uri: https://dev-68722230.okta.com/oauth2/default
+            
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+        
+  endpoint:
+    health:
+      show-details: always
+      
 eureka:
   instance:
     prefer-ip-address: true
@@ -5,3 +37,8 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+okta:
+  oauth2:
+    issuer: https://dev-68722230.okta.com/oauth2/default
+    audience: api://default
